@@ -49,14 +49,12 @@ function get_latest_release {
 	echo "$latest_release" # So functions calling this can consume the result since you can't return strings in bash :)
 }
 
-# Takes version number as first parameter
-function down_release {
-	local down_url="https://github.com/tModLoader/tModLoader/releases/download/$1/tModLoader.zip"
-	if [[ -v version ]]; then
-		set -- "$version"
-	fi
-	echo "Downloading version $1"
-	curl -s -LJO "$down_url" 2>/dev/null || wget -q --content-disposition "$down_url"
+# Takes version number as first parameter  
+function down_release {  
+  local version="v2022.09.47.50"
+  local down_url="https://github.com/tModLoader/tModLoader/releases/download/$version/tModLoader.zip"  
+  echo "Downloading version $version"  
+  curl -s -LJO "$down_url" 2>/dev/null || wget -q --content-disposition "$down_url"  
 }
 
 # Check $username is defined, ask if not
